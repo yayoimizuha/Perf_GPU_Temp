@@ -25,7 +25,7 @@ def run():
 
     Error = tensorflow.subtract(INVxBASE, tensorflow.math.round(INVxBASE)).numpy()
 
-    print(Error.sum(), end='\t')
+    print(Error.sum())
 
 
 for i in range(20):
