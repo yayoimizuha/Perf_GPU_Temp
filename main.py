@@ -25,13 +25,17 @@ def run():
 
     Error = tensorflow.subtract(INVxBASE, tensorflow.math.round(INVxBASE)).numpy()
 
+
     print(Error.sum())
 
 
 for i in range(20):
+    tensorflow.device('CPU:0')
     run()
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+print('\n\n\n\n\n\nGPU\n\n\n\n\n\n')
+
 
 for i in range(20):
+    tensorflow.device('/physical_device:GPU:0')
     run()
