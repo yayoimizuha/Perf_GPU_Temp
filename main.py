@@ -9,10 +9,10 @@ print(tensorflow.config.experimental.list_physical_devices("GPU"))
 print(tensorflow.config.experimental.list_physical_devices("CPU"))
 print(int(temp.stdout.split()[-1]))
 
-numpy.random.seed(0)
-
 
 def run(device):
+    numpy.random.seed(0)
+
     random_base = numpy.random.rand(10000, 10000)
     # cpu_inved = numpy.linalg.inv(random_base)
     # print(random_base.tolist())
@@ -24,15 +24,15 @@ def run(device):
 
         INVxBASE = tensorflow.matmul(inved, base_tensor)
 
-        Error = tensorflow.subtract(INVxBASE, tensorflow.math.round(INVxBASE)).numpy()
+        Error = tensorflow.subtract(INVxBASE, tensorflow.math.round(INVxBASE))
 
         print(device, end='\t')
-        print(Error.sum())
+        print(tensorflow.math.reduce_sum(Error))
 
 
 for i in range(20):
     pass
-    # run('CPU:0')
+    run('CPU:0')
 
 print('\n\n\n\n\n\nGPU\n\n\n\n\n\n')
 
