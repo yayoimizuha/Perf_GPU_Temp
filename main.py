@@ -13,29 +13,29 @@ print(int(temp.stdout.split()[-1]))
 def run(device):
     numpy.random.seed(0)
 
-    random_base = numpy.random.rand(10000, 10000)
+    # random_base = numpy.random.rand(10000, 10000)
     # cpu_inved = numpy.linalg.inv(random_base)
     # print(random_base.tolist())
 
     with tensorflow.device(device):
-        base_tensor = tensorflow.constant(random_base.tolist())
+        float_a = tensorflow.constant(1 / 7)
 
-        inved = tensorflow.linalg.inv(base_tensor)
-
-        INVxBASE = tensorflow.matmul(inved, base_tensor)
-
-        Error = tensorflow.subtract(INVxBASE, tensorflow.math.round(INVxBASE))
-
-        print(device, end='\t')
-        print(tensorflow.math.reduce_sum(Error))
+        for i in range(100000):
+            if i % 1000 == 0:
+                print(i, end='\t')
+            float_a = tensorflow.divide(float_a, 3 / 7)
+            if i % 1000 == 0:
+                print(float_a, end='\t')
+            float_a = tensorflow.divide(float_a, 7 / 3)
+            if i % 1000 == 0:
+                print(float_a)
 
 
 for i in range(20):
     pass
-    run('CPU:0')
+    # run('CPU:0')
 
-print('\n\n\n\n\n\nGPU\n\n\n\n\n\n')
-
+print('  GPU')
 
 for i in range(20):
     run('GPU:0')
