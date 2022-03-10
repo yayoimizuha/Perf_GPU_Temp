@@ -16,6 +16,7 @@ def run():
     # print(random_base.tolist())
 
     print(tensorflow.config.experimental.list_physical_devices("GPU"))
+    print(tensorflow.config.experimental.list_physical_devices("CPU"))
 
     base_tensor = tensorflow.constant(random_base.tolist())
 
